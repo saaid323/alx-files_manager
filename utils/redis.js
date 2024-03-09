@@ -9,7 +9,7 @@ class RedisClient {
       console.error('Redis client error:', err);
     });
     this.getasync = promisify(this.client.get).bind(this.client);
-    this.setasync = promisify(this.client.setex).bind(this.client);
+    this.setasync = promisify(this.client.set).bind(this.client);
     this.delasync = promisify(this.client.del).bind(this.client);
   }
 
