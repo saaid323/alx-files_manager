@@ -17,16 +17,29 @@ class RedisClient {
   }
 
   async get(key) {
-    const value = await this.getasync(key);
-    return value;
+    try {
+      const value = await this.getasync(key);
+      return value;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   }
 
   async set(key, value, duration) {
-    await this.setasync(key, value, duration);
+    try {
+      await this.setasync(key, value, duration);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async del(key) {
-    await this.delasync(key);
+    try {
+      await this.delasync(key);
+    } catch (error) {
+      console.error('Error while deleting value from Redis:', error);
+    }
   }
 }
 
